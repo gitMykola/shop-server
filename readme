@@ -43,6 +43,7 @@ Relative standard architecture:
 			Location - '/models/goodsModel.js'
 6. LIB
 		Filter.
+			Location - '/lib/filter.js'
 			Module consist of to methods:
 				validate:
 					lets validate object fields value and object structure,

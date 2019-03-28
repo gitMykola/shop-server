@@ -1,0 +1,54 @@
+Shop Backend Application.
+Used stack Node.js, Express, MongoDB.
+
+Relative standard architecture:
+
+1.START
+	To start application 'npm start'
+2. ROUTES
+	There are a few api routes to create, get/get by criteria, update, delete documents:
+		API ROUTES
+				Goods list optional by pages & filtered by tilte field
+			GET '/api/goods'
+				Goods total count optional filtered by tilte field
+			GET '/api/goods/count'
+				Create goods
+			POST '/api/goods/create'
+				Update goods
+			POST '/api/goods/update'
+				Delete goods
+			GET '/api/goods/delete'
+
+		DEFAULT API ROUTES
+
+			GET '/api'
+			POST '/api'
+
+		DEFAULT ROUTES
+
+			GET '/'
+			POST '/'
+
+3. CONTROLLERS
+		Goods controller.
+			Common task - to call goodsService methods, response data and catch errors.
+			Lookin to '/controllers/goodsController.js' to find detail descritions
+			all controller methods.
+4. SERVICES
+		Goods service.
+			Common task - to operate with received data via goods Model.
+			Lookin to '/services/goodsService.js' and see all methods detail dscriptions.
+5. MODELS
+		Goods MongoDB Collection.
+			Location - '/models/goodsModel.js'
+6. LIB
+		Filter.
+			Module consist of to methods:
+				validate:
+					lets validate object fields value and object structure,
+					return error message with wrong field. Can be extended
+					up to necessary number and types of fields.
+				filter:
+					prepare mongodb search criteria object from recieved data object.
+					Can be modified and expanded.
+

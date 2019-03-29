@@ -22,11 +22,15 @@ async function count(req, res) {
  * field 'title')*/
 async function getItems(req, res) {
     try {
-        const { page, count, title } = req.query;
+        const { page, count, title, id } = req.query;
+        const searchCriteria = Object.assign(
+            title ? { title: title } : {},            
+            id ? { _id: id } : {}
+        );
         res.json(await goodsService.getItems(
                 Number(page - 1),
-                Number(count),
-                { title: title }
+            Number(count),
+            searchCriteria
             ));
     } catch (err) {
         res.status(500).json({

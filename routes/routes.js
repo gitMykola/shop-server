@@ -1,6 +1,6 @@
 const express = require('express');
 const goodsController = require(appRoot + '/controllers/goodsController');
-const router = express.Router();
+const router = express.Router();  
 const uploader = require(appRoot + '/services/uploaderService');
 
 //api routes

@@ -67,6 +67,7 @@
             .title ? { title: data.searchCriteria.title } : {});
         setCount(countSum.count);
         setSum(countSum.sum);
+        setAverage(Math.round(countSum.sum * 100/ countSum.count) / 100);
         setPage(data.page);
     }
     const setProducts = function (prods) {
@@ -124,6 +125,10 @@
     const setCount = function (count) {
         data.count = count;
         $('#countElement').text(count);
+    }
+    const setAverage = function (average) {
+        data.average = average;
+        $('#averageElement').text(average);
     }
     const getProducts = async function (searchData) {
         data.products = await send('GET', apiUrl + '/goods', searchData);

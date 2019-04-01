@@ -5,11 +5,9 @@ const goodsService = require(appRoot + '/services/goodsService');
 async function count(req, res) {
     try {
         const { title } = req.query;
-        res.json({
-            count: await goodsService.getCount(
-                {title: title}
-            )
-        });
+        res.json(await goodsService.getCount(
+            { title: title }
+        ));
     } catch (err) {
         res.status(500).json({
             code: 1000,
@@ -18,8 +16,10 @@ async function count(req, res) {
     }
 
 }
+
+
 /*return documents list by pages, according to search criteria(now only 
- * field 'title')*/
+ * field 'title', 'id')*/
 async function getItems(req, res) {
     try {
         const { page, count, title, id } = req.query;
@@ -28,7 +28,7 @@ async function getItems(req, res) {
             id ? { _id: id } : {}
         );
         res.json(await goodsService.getItems(
-                Number(page - 1),
+            Number(page - 1),
             Number(count),
             searchCriteria
             ));
@@ -39,12 +39,14 @@ async function getItems(req, res) {
         })
     }
 }
+
+
 /*create new document*/
 async function createItem(req, res) {
     try {
         goodsService.validate(req.body, req.file);
         const data = Object.assign(req.body,
-            { image: imagePath + req.file.path.split('\\').pop() });
+            { image: imagePath + req.file.path.split(sep).pop() });
         res.json(await goodsService.create(data));
     } catch (err) {
         res.status(500).json({
@@ -53,6 +55,8 @@ async function createItem(req, res) {
         })
     }
 }
+
+
 /*update exists document by id according to sending data*/
 async function updateItem(req, res) {
     try {
@@ -72,6 +76,8 @@ async function updateItem(req, res) {
         })
     }
 }
+
+
 /*delete document by id*/
 async function deleteItem(req, res) {
     try {

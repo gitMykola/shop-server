@@ -9,6 +9,8 @@ const mongoose = require('mongoose');
 
 //set global AppDirectory
 global.appRoot = path.resolve(__dirname);
+//set separator
+global.sep = path.sep;
 //set mongoose Promise
 mongoose.Promise = global.Promise;
 //database connection
@@ -32,15 +34,19 @@ app.use(function (req, res, next) {
         "Origin, X-Requested-With, Content-Type, Accept, ");
     next();
 });
-//static file
-app.use(express.static(appRoot + 'public/uploads'));
+//static path
+app.use(express.static('public'));
 //set global API URL
 global.apiUrl = 'http://localhost/';
-//set image uploaded dir. Localhost win10x64 gag.
-global.imagePath = 'C:\\Projects\\ShopServer\\public\\uploads\\';
-// add routes
-const routes = require(appRoot + '/routes/routes');
-app.use('/', routes);
+//set image path to image urls.
+global.imagePath = `C:${sep}Projects${sep}ShopServer${sep}public${sep}uploads${sep}`;
+// add API routes
+app.use('/api', require(appRoot + `${sep}routes${sep}apiRoutes`));
+// add Shop routes
+app.use('/', require(appRoot + `${sep}routes${sep}shopRoutes`));
+//set path & view engine
+app.set('views', path.join(__dirname, 'views'));
+app.set('view engine', 'pug');
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
     var err = new Error('Not Found');

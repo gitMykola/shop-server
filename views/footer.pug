@@ -1,0 +1,21 @@
+block footer
+    //paginator block
+    div.footer-block
+        ul.nav.paginator.col-12.row.justify-content-center
+            button.nav-itme.btn.btn-light(id="previosPage") Prev
+            div.nav-itme
+                button.btn.btn-light(id="currentPage")
+                    span(id="ofPages")
+            button.nav-itme.btn.btn-light(id="nextPage") Next
+        div.footer-row.col-12.row.justify-content-center
+            div.footer-item.row.col-3
+                p.col-6 Count:
+                p.col-6(id="countElement")
+            div.footer-item.row.col-3
+                p.col-6 Sum:
+                p.col-6(id="sumElement")
+            div.footer-item.row.col-3
+                p.col-6 Average:
+                p.col-6(id="averageElement")
+            button.btn.btn-light(data-toggle="modal", data-target="#productNew", id="productNewButton") Add New Product
+    

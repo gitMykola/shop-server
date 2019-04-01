@@ -1,0 +1,29 @@
+doctype html
+html
+    head
+         include header.pug
+    body
+        h2.col-12.row.justify-content-center Catalog
+        div.catalog.col-12.row.justify-content-center
+            div.catalog-header.col-11
+                //header row
+                div.header-row.row
+                    div.header-item.col-1 Num
+                    div.header-item.col-2 Title
+                    div.header-item.col-2 Category
+                    div.header-item.col-3 Description
+                    div.header-item.col-1 Price
+                    div.header-item.col Image
+                //search row
+                div.catalog-search.row
+                    div.header-item.col-1
+                    input.header-item.col-2(type="text", id="searchTitle")
+                    div.header-item.col-2
+                    div.header-item.col-3
+                    div.header-item.col-1
+                    div.header-item.col
+            //catalog list
+            div.catalog-content.col-11(id="contentElement")
+                    
+        include footer.pug
+        include productForm.pug

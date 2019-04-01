@@ -1,0 +1,38 @@
+block productForm
+    div.modal.fade(role="dialog", id="productNew", aria-labelledby="productNew", tab-index="-1")
+        div.modal-dialog(role="document")
+            div.modal-content
+                div.modal-header
+                    h4.modal-title(id="productId") New Product
+                    button.close(type="button", data-dismiss="modal" area-label="Close")
+                        span(area-hidden="true") &times;
+                div.modal-body
+                    form.col
+                        div.row
+                            div.col-4
+                                label.col Title
+                                input.col(type="text", id="newTitle")
+                            div.col-4
+                                label.col Category
+                                input.col(type="text", id="newCategory")
+                            div.col-4
+                                label.col Price
+                                input.col(type="number", id="newPrice", min="0", max="1e9", step="0.01") 
+                        div.col
+                            label.col Description
+                            textarea.col(type="text", id="newDescription", row="3")
+                        div.col
+                            label.col image
+                            input.col(type="file", id="newImage", accept="image/jpeg, image/png")
+                div.modal-footer
+                    button.btn.btn-secondary.col(data-dismiss="modal", id="saveProduct") Save
+
+    div.modal.fade(role="dialog", id="productDelete", aria-labelledby="productDelete", tab-index="-1")
+        div.modal-dialog(role="document")
+            div.modal-content
+                div.modal-header
+                    h4.modal-title(id="deleteProductId")
+                    button.close(type="button", data-dismiss="modal" area-label="Close")
+                        span(area-hidden="true") &times;
+                div.modal-footer
+                    button.btn.btn-secondary.col(data-dismiss="modal", id="deleteProduct") Delete

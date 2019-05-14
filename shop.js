@@ -37,9 +37,9 @@ app.use(function (req, res, next) {
 //static path
 app.use(express.static('public'));
 //set global API URL
-global.apiUrl = 'http://localhost/';
+global.apiUrl = 'http://localhost:2345/';
 //set image path to image urls.
-global.imagePath = `C:${sep}Projects${sep}ShopServer${sep}public${sep}uploads${sep}`;
+global.imagePath = `home${sep}user${sep}Projects${sep}tmp${sep}shop-server${sep}public${sep}uploads${sep}`;
 // add API routes
 app.use('/api', require(appRoot + `${sep}routes${sep}apiRoutes`));
 // add Shop routes

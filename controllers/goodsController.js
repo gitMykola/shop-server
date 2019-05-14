@@ -27,11 +27,13 @@ async function getItems(req, res) {
             title ? { title: title } : {},            
             id ? { _id: id } : {}
         );
-        res.json(await goodsService.getItems(
-            Number(page - 1),
-            Number(count),
-            searchCriteria
-            ));
+        res.json({
+            products: await goodsService.getItems(
+                Number(page - 1),
+                Number(count),
+                searchCriteria
+            )
+        });
     } catch (err) {
         res.status(500).json({
             code: 1001,
@@ -46,7 +48,7 @@ async function createItem(req, res) {
     try {
         goodsService.validate(req.body, req.file);
         const data = Object.assign(req.body,
-            { image: imagePath + req.file.path.split(sep).pop() });
+            { image: /*imagePath*/apiUrl + req.file.path.split(sep).pop() });
         res.json(await goodsService.create(data));
     } catch (err) {
         res.status(500).json({
@@ -61,9 +63,9 @@ async function createItem(req, res) {
 async function updateItem(req, res) {
     try {
         goodsService.validate(req.body, req.file, true);
-        const fileName = req.file && req.file.path.split('\\').pop();
+        const fileName = req.file && req.file.path.split(sep).pop();
         const data = Object.assign(req.body, req.file ?
-            { image: imagePath + fileName } : {});
+            { image: /*imagePath*/apiUrl + fileName } : {});
         await goodsService.update(data);
         res.json({
             id: data.id,

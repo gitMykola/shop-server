@@ -6,6 +6,8 @@ const morgan = require('morgan');
 const http = require('http');
 const server = http.createServer(app);
 const mongoose = require('mongoose');
+const cors = require('cors');
+const errorHandler = require('errorhandler');
 
 //set global AppDirectory
 global.appRoot = path.resolve(__dirname);
@@ -25,15 +27,22 @@ mongoose.connection.on('error', err => {
 //set logger
 app.use(morgan('dev'));
 //set body parser
-app.use(bodyParser.json({ type: 'text/plain' }));
+app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 //set CORS
-app.use(function (req, res, next) {
+app.use(cors());
+/*app.use(function (req, res, next) {
     res.header("Access-Control-Allow-Origin", "*");
     res.header("Access-Control-Allow-Headers",
         "Origin, X-Requested-With, Content-Type, Accept, ");
     next();
-});
+});*/
+//set application mode
+const isProduction = process.env.NODE_ENV === 'production';
+//set error handler
+if(!isProduction) {
+    app.use(errorHandler());
+}
 //static path
 app.use(express.static('public'));
 //set global API URL
@@ -41,9 +50,9 @@ global.apiUrl = 'http://localhost:2345/';
 //set image path to image urls.
 global.imagePath = `home${sep}user${sep}Projects${sep}tmp${sep}shop-server${sep}public${sep}uploads${sep}`;
 // add API routes
-app.use('/api', require(appRoot + `${sep}routes${sep}apiRoutes`));
+app.use('/', require(appRoot + `${sep}routes`));
 // add Shop routes
-app.use('/', require(appRoot + `${sep}routes${sep}shopRoutes`));
+//app.use('/', require(appRoot + `${sep}routes${sep}shopRoutes`));
 //set path & view engine
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'pug');

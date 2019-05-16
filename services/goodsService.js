@@ -90,7 +90,7 @@ async function deleteItem(id) {
 }
 
 
-/*@summary validate data to creaye, update and delete operations,
+/*@summary validate data to create, update and delete operations,
  * @data - Object, data object, cat consist of all collection fields
  * for create operation, all or less field for update operation and only 'id'
  * field for delete operation,

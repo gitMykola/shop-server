@@ -4,4 +4,5 @@ node_modules
 .git
 public/uploads/*
 public/*
+config/config.js
 
